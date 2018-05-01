@@ -12,10 +12,6 @@ import tensorflow as tf
 from tensorflow_serving.apis import predict_pb2
 from tensorflow_serving.apis import prediction_service_pb2
 
-tf.app.flags.DEFINE_string('server', 'localhost:9000',
-                           'PredictionService host:port')
-tf.app.flags.DEFINE_string('image', '', 'path to image in JPEG format')
-FLAGS = tf.app.flags.FLAGS
  
 class GrpcLocust(Locust):
     def __init__(self, *args, **kwargs):
@@ -34,10 +30,10 @@ class ApiUser(GrpcLocust):
  
         @task
         def get_prediction(self):
-            host, port = FLAGS.server.split(':')
+            host, port = '127.0.0.1:9000'.split(':')
             channel = implementations.insecure_channel(host, int(port))
             stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
-            with open(FLAGS.image, 'rb') as f:
+            with open('/home/ubuntu/tensorflow-serving-gatling-extension/test.jpg', 'rb') as f:
                 data = f.read()
                 start_time = time.time()
                 request = predict_pb2.PredictRequest()
