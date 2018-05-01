@@ -18,10 +18,6 @@ class GrpcLocust(Locust):
         super(GrpcLocust, self).__init__(*args, **kwargs)
  
 class ApiUser(GrpcLocust):
-     
-    min_wait=900    # Min time between requests of each user
-    max_wait=1100    # Max time between requests of each user
-     
  
     class task_set(TaskSet):
 
@@ -42,7 +38,7 @@ class ApiUser(GrpcLocust):
                 request.inputs['images'].CopyFrom(
                     tf.contrib.util.make_tensor_proto(data, shape=[1]))
                 try:
-                    result = stub.Predict(request, 5.0)  # 10 secs timeout
+                    result = stub.Predict(request, 2.0)  # 10 secs timeout
                 #print(result)
                 except:
                     total_time = int((time.time() - start_time) * 1000)
