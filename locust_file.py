@@ -51,7 +51,7 @@ class ApiUser(GrpcLocust):
                     except:
                         total_time = int((time.time() - start_time) * 1000)
                         print("DDL exceeded")
-                        events.request_failure.fire(request_type="grpc", name='inception', response_time=total_time, exception=e)
+                        events.request_failure.fire(request_type="grpc", name='inception', response_time=total_time, exception="ddl")
                     else:
                         #print(result)
                         print("success")
