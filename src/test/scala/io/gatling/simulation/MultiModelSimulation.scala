@@ -17,7 +17,7 @@ class MultiModelSimulation extends Simulation {
 
   val blockingStub = PredictionServiceGrpc.newBlockingStub(channel)
 
-  val models = List(("model1", 1), ("model2", 1))
+  val models = List(("mnist", 1), ("inception", 1))
 
   val inputParam = "images"
   val outputParam = "scores"
