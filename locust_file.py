@@ -46,7 +46,7 @@ class ApiUser(GrpcLocust):
                     request.inputs['images'].CopyFrom(
                         tf.contrib.util.make_tensor_proto(data, shape=[1]))
                     try:
-                    result = stub.Predict(request, 0.50)  # 10 secs timeout
+                        result = stub.Predict(request, 0.50)  # 10 secs timeout
                     #print(result)
                     except:
                         total_time = int((time.time() - start_time) * 1000)
