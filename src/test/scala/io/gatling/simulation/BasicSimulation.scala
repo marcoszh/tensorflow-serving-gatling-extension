@@ -28,5 +28,5 @@ class BasicSimulation extends Simulation {
 
   val scn = scenario("Tensorflow Serving Client call").exec(TensorflowServingClientBuilder())
 
-  setUp(scn.inject(rampUsers(100) over (15 seconds))).protocols(tfServingClientProtocol)
+  setUp(scn.inject(atOnceUsers(100))).protocols(tfServingClientProtocol)
 }
