@@ -4,6 +4,7 @@ import io.gatling.core.Predef.Simulation
 import io.gatling.core.Predef._
 import io.gatling.tensorflow.{TensorflowServingClientBuilder, TensorflowServingClientProtocol}
 import io.grpc.netty.NettyChannelBuilder
+import scala.concurrent.duration._
 import tensorflow.serving.PredictionServiceGrpc
 
 class BasicSimulation extends Simulation {
