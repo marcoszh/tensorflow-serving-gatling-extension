@@ -20,7 +20,7 @@ class GrpcLocust(Locust):
 class ApiUser(GrpcLocust):
      
     min_wait=0    # Min time between requests of each user
-    max_wait=100    # Max time between requests of each user
+    max_wait=10    # Max time between requests of each user
      
  
     class task_set(TaskSet):
@@ -33,7 +33,7 @@ class ApiUser(GrpcLocust):
  
         @task
         def get_prediction(self):
-            host, port = '127.0.0.1:9000'.split(':')
+            host, port = 'ec2-52-53-213-166.us-west-1.compute.amazonaws.com:9000'.split(':')
             channel = implementations.insecure_channel(host, int(port))
             stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
             with open('/home/ubuntu/tensorflow-serving-gatling-extension/test.jpg', 'rb') as f:
