@@ -9,7 +9,7 @@ import tensorflow.serving.PredictionServiceGrpc
 
 class BasicSimulation extends Simulation {
 
-  val host = "127.0.0.1"
+  val host = "54.193.98.1"
   val port = 9000
   val channel = NettyChannelBuilder.forAddress(host, port)
     .usePlaintext(true)
@@ -18,7 +18,7 @@ class BasicSimulation extends Simulation {
 
   val blockingStub = PredictionServiceGrpc.newBlockingStub(channel)
 
-  val models = List(("mnist", 1))
+  val models = List(("model1", 1))
 
   val inputParam = "images"
   val outputParam = "scores"
@@ -28,5 +28,5 @@ class BasicSimulation extends Simulation {
 
   val scn = scenario("Tensorflow Serving Client call").exec(TensorflowServingClientBuilder())
 
-  setUp(scn.inject(atOnceUsers(100))).protocols(tfServingClientProtocol)
+  setUp(scn.inject(atOnceUsers(10))).protocols(tfServingClientProtocol)
 }
