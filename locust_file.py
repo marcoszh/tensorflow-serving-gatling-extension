@@ -38,7 +38,7 @@ class ApiUser(GrpcLocust):
             stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
             with open('/home/ubuntu/tensorflow-serving-gatling-extension/test.jpg', 'rb') as f:
                 data = f.read()
-                for _ in range(100):
+                for _ in range(2):
                     start_time = time.time()
                     request = predict_pb2.PredictRequest()
                     request.model_spec.name = 'inception'
@@ -46,7 +46,7 @@ class ApiUser(GrpcLocust):
                     request.inputs['images'].CopyFrom(
                         tf.contrib.util.make_tensor_proto(data, shape=[1]))
                     try:
-                        result = stub.Predict(request, 0.50)  # 10 secs timeout
+                        result = stub.Predict(request, 10)  # 10 secs timeout
                     #print(result)
                     except:
                         total_time = int((time.time() - start_time) * 1000)
