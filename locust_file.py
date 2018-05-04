@@ -19,8 +19,8 @@ class GrpcLocust(Locust):
  
 class ApiUser(GrpcLocust):
      
-    min_wait=0    # Min time between requests of each user
-    max_wait=10    # Max time between requests of each user
+    min_wait=100    # Min time between requests of each user
+    max_wait=300    # Max time between requests of each user
      
  
     class task_set(TaskSet):
@@ -38,7 +38,7 @@ class ApiUser(GrpcLocust):
             stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
             with open('/home/ubuntu/tensorflow-serving-gatling-extension/test.jpg', 'rb') as f:
                 data = f.read()
-                for _ in range(2):
+                for _ in range(1):
                     start_time = time.time()
                     request = predict_pb2.PredictRequest()
                     request.model_spec.name = 'inception'
