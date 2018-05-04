@@ -33,7 +33,7 @@ class ApiUser(GrpcLocust):
  
         @task
         def get_prediction(self):
-            host, port = 'ec2-52-53-213-166.us-west-1.compute.amazonaws.com:9000'.split(':')
+            host, port = 'ec2-52-53-187-4.us-west-1.compute.amazonaws.com:9000'.split(':')
             channel = implementations.insecure_channel(host, int(port))
             stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
             with open('/home/ubuntu/tensorflow-serving-gatling-extension/test.jpg', 'rb') as f:
