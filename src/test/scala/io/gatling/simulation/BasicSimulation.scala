@@ -9,7 +9,7 @@ import tensorflow.serving.PredictionServiceGrpc
 
 class BasicSimulation extends Simulation {
 
-  val host = "54.193.98.1"
+  val host = "52.53.187.4"
   val port = 9000
   val channel = NettyChannelBuilder.forAddress(host, port)
     .usePlaintext(true)
@@ -28,5 +28,5 @@ class BasicSimulation extends Simulation {
 
   val scn = scenario("Tensorflow Serving Client call").exec(TensorflowServingClientBuilder())
 
-  setUp(scn.inject(atOnceUsers(10))).protocols(tfServingClientProtocol)
+  setUp(scn.inject(atOnceUsers(2000))).protocols(tfServingClientProtocol)
 }
